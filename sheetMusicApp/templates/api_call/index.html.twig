@@ -8,17 +8,11 @@
         <input type="text" id="song" name="song">
     </form>
     <ul>
-        {%  for song in response %}
-        <li><a href=""> {{ song.artist.name }} - {{ song.title }}  </a></li>
-            <select id="instrument" name="instrument">
-            {% for instrument in song.tabTypes %}
-                {% if instrument != "PLAYER" %}
-                    <option value="{{ instrument }}">{{ instrument }}</option>
-                {% elseif instrument == "PLAYER" and song.tabTypes|length == 1 %}
-                    <option value="{{ instrument }}">NO TAB AVAILABLE</option>
-                {% endif %}
-            {% endfor %}
-            </select>
+        {% for song in response %}
+            <li>
+                <a href="http://www.songsterr.com/a/wa/bestMatchForQueryString?s={{ song.title }}&a={{ song.artist.name }},
+"> {{ song.artist.name }} - {{ song.title }}  </a></li>
+
         {% endfor %}
     </ul>
 {% endblock %}
