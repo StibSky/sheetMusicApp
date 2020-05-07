@@ -22,12 +22,24 @@ class APIClass
     {
         return $this->id;
     }
+
     public function index()
     {
         $songs = $_GET["song"] ?? "";
 
         $client = HttpClient::create();
-        $response = $client->request('GET', 'http://www.songsterr.com/a/ra/songs.json?pattern='.$songs.'');
-        return json_decode($response->getContent(),  JSON_PRETTY_PRINT);
+
+        $songsterrResponse = $client->request('GET', 'http://www.songsterr.com/a/ra/songs.json?pattern=' . $songs . '');
+        $geniusResponse = $client->request('POST', 'https://genius.p.rapidapi.com/search/q='. $songs, [
+            'headers' => [
+                "x-rapidapi-host" => "genius.p.rapidapi.com",
+                "x-rapidapi-key" => "03a7b6cf72mshfa048cb2511248fp1e0424jsndc2ad8729005"
+            ]
+        ]);
+        die($geniusResponse->getContent());
+
+
+        return json_decode($songsterrResponse->getContent(), JSON_PRETTY_PRINT);
     }
+
 }
