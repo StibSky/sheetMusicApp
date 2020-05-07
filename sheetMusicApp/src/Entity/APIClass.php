@@ -24,7 +24,12 @@ class APIClass
     }
     public function index()
     {
-        $songs = $_GET["song"];
+        if(isset($_GET["song"])) {
+            $songs = $_GET["song"];
+        }
+        else {
+            $songs = "";
+        }
         $client = HttpClient::create();
         $response = $client->request('GET', 'http://www.songsterr.com/a/ra/songs.json?pattern='.$songs.'');
         return json_decode($response->getContent(),  JSON_PRETTY_PRINT);
