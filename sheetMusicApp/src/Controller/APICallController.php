@@ -9,14 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class APICallController extends AbstractController
 {
     /**
-     * @Route("/call", name="a_p_i_call")
+     * @Route("/call", name="call")
      */
     public function index()
     {
         $api = new APIClass();
         $response = $api->index();
-        var_dump($response);
-        die();
 
         return $this->render('api_call/index.html.twig', [
             'response' => $response,

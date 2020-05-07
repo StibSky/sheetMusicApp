@@ -24,8 +24,9 @@ class APIClass
     }
     public function index()
     {
+        $songs = $_GET["song"];
         $client = HttpClient::create();
-        $response = $client->request('GET', 'http://www.songsterr.com/a/ra/songs.json?pattern=Marley');
-        return json_decode($response->getContent(), true, JSON_PRETTY_PRINT);
+        $response = $client->request('GET', 'http://www.songsterr.com/a/ra/songs.json?pattern='.$songs.'');
+        return json_decode($response->getContent(),  JSON_PRETTY_PRINT);
     }
 }

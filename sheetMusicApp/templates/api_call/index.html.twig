@@ -3,5 +3,13 @@
 {% block title %}Hello APICallController!{% endblock %}
 
 {% block body %}
-<h1>{{ response }}</h1>
+    <form action="{{ path('call') }}" method="get">
+        <label for="song"> type songname or artist</label>
+        <input type="text" id="song" name="song">
+    </form>
+    <ul>
+        {%  for song in response %}
+        <li><a href="{{ song.artist.name }}"> {{ song.title }} </a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}
