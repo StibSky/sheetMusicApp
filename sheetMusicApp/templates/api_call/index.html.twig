@@ -9,7 +9,7 @@
     </form>
     <ul>
         {%  for song in response %}
-        <li><a href="{{ song.artist.name }}"> {{ song.title }} </a></li>
+        <li><a href=""> {{ song.artist.name }} - {{ song.title }}  </a></li>
         {% endfor %}
     </ul>
 {% endblock %}
