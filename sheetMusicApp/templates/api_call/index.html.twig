@@ -10,6 +10,15 @@
     <ul>
         {%  for song in response %}
         <li><a href=""> {{ song.artist.name }} - {{ song.title }}  </a></li>
+            <select id="instrument" name="instrument">
+            {% for instrument in song.tabTypes %}
+                {% if instrument != "PLAYER" %}
+                    <option value="{{ instrument }}">{{ instrument }}</option>
+                {% elseif instrument == "PLAYER" and song.tabTypes|length == 1 %}
+                    <option value="{{ instrument }}">NO TAB AVAILABLE</option>
+                {% endif %}
+            {% endfor %}
+            </select>
         {% endfor %}
     </ul>
 {% endblock %}
